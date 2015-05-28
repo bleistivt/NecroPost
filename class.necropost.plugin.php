@@ -1,7 +1,7 @@
 <?php if (!defined('APPLICATION')) exit();
 
 $PluginInfo['necropost'] = array(
-    'Name' => 'NecroPost Warning',
+    'Name' => 'Necropost Warning',
     'Description' => 'Warn users when they are about to comment on an old discussion.',
     'Version' => '0.1',
     'MobileFriendly' => true,
