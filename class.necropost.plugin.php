@@ -41,15 +41,7 @@ class necropostPlugin extends Gdn_Plugin {
         if (!$sender->data('Discussion') || time() - strtotime($sender->data('Discussion')->DateLastComment) < C('necropost.days', 365) * 86400) {
             return;
         }
-        $sender->Head->addString(
-            '<script type="text/javascript">
-                jQuery(function($){
-                    $("#Form_Comment").one("focus", ".TextBox", function() {
-                        gdn.informMessage("'.$this->message().'", "Dismissable");
-                    });
-                });
-            </script>'
-        );
+        $sender->InformMessage($this->message(), "Dismissable");
     }
 
     private function message() {
