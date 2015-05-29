@@ -17,7 +17,7 @@ class necropostPlugin extends Gdn_Plugin {
     public function settingsController_necropost_create($sender) {
         $sender->permission('Garden.Settings.Manage');
         $sender->addSideMenu('settings/necropost');
-        $sender->setData('Title', T('NecroPost Warning'));
+        $sender->setData('Title', T('Necropost Warning'));
 
         $conf = new ConfigurationModule($sender);
         $conf->initialize(array(
