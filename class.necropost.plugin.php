@@ -12,7 +12,7 @@ $PluginInfo['necropost'] = array(
     'License' => 'GNU GPL2'
 );
 
-class necropostPlugin extends Gdn_Plugin {
+class NecropostPlugin extends Gdn_Plugin {
 
     public function settingsController_necropost_create($sender) {
         $sender->permission('Garden.Settings.Manage');
@@ -21,13 +21,13 @@ class necropostPlugin extends Gdn_Plugin {
 
         $conf = new ConfigurationModule($sender);
         $conf->initialize(array(
-            'necropost.days' => array(
+            'Necropost.Days' => array(
                 'Control' => 'textbox',
                 'LabelCode' => 'Minimum age of a discussion (days)',
                 'Default' => 356,
                 'Options' => array('maxlength' => 5)
             ),
-            'necropost.message' => array(
+            'Necropost.Message' => array(
                 'Control' => 'textbox',
                 'LabelCode' => 'Message',
                 'Default' => $this->message(),
@@ -38,7 +38,7 @@ class necropostPlugin extends Gdn_Plugin {
     }
 
     public function discussionController_render_before($sender) {
-        if (!$sender->data('Discussion') || time() - strtotime($sender->data('Discussion')->DateLastComment) < C('necropost.days', 365) * 86400) {
+        if (!$sender->data('Discussion') || time() - strtotime($sender->data('Discussion')->DateLastComment) < c('Necropost.Days', 365) * 86400) {
             return;
         }
         $sender->Head->addString(
@@ -53,7 +53,7 @@ class necropostPlugin extends Gdn_Plugin {
     }
 
     private function message() {
-        return T(C('necropost.message', 'This discussion has been inactive for more than a year. Please comment only if you have something constructive to add.'));
+        return t(c('Necropost.Message', 'This discussion has been inactive for more than a year. Please comment only if you have something constructive to add.'));
     }
 
 }
