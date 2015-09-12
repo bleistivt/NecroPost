@@ -1,6 +1,6 @@
 <?php
 
-$PluginInfo['necropost'] = array(
+$PluginInfo['necropost'] = [
     'Name' => 'Necropost Warning',
     'Description' => 'Warn users when they are about to comment on an old discussion.',
     'Version' => '0.1',
@@ -10,7 +10,7 @@ $PluginInfo['necropost'] = array(
     'Author' => 'Bleistivt',
     'AuthorUrl' => 'http://bleistivt.net',
     'License' => 'GNU GPL2'
-);
+];
 
 class NecropostPlugin extends Gdn_Plugin {
 
@@ -20,20 +20,20 @@ class NecropostPlugin extends Gdn_Plugin {
         $sender->setData('Title', T('Necropost Warning'));
 
         $conf = new ConfigurationModule($sender);
-        $conf->initialize(array(
-            'Necropost.Days' => array(
+        $conf->initialize([
+            'Necropost.Days' => [
                 'Control' => 'textbox',
                 'LabelCode' => 'Minimum age of a discussion (days)',
                 'Default' => 356,
-                'Options' => array('maxlength' => 5)
-            ),
-            'Necropost.Message' => array(
+                'Options' => ['maxlength' => 5]
+            ],
+            'Necropost.Message' => [
                 'Control' => 'textbox',
                 'LabelCode' => 'Message',
                 'Default' => $this->message(),
-                'Options' => array('MultiLine' => true)
-            )
-        ));
+                'Options' => ['MultiLine' => true]
+            ]
+        ]);
         $conf->renderAll();
     }
 
