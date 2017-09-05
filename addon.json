@@ -1,0 +1,17 @@
+{
+    "name": "Necropost Warning",
+    "description": "Warn users when they are about to comment on an old discussion.",
+    "version": "0.1",
+    "mobileFriendly": true,
+    "settingsUrl": "settings/necropost",
+    "settingsPermission": "Garden.Settings.Manage",
+    "license": "GNU GPL2",
+    "key": "necropost",
+    "type": "addon",
+    "authors": [
+        {
+            "name": "Bleistivt",
+            "homepage": "http://bleistivt.net"
+        }
+    ]
+}
