@@ -1,22 +1,10 @@
 <?php
 
-$PluginInfo['necropost'] = [
-    'Name' => 'Necropost Warning',
-    'Description' => 'Warn users when they are about to comment on an old discussion.',
-    'Version' => '0.1',
-    'MobileFriendly' => true,
-    'SettingsUrl' => 'settings/necropost',
-    'SettingsPermission' => 'Garden.Settings.Manage',
-    'Author' => 'Bleistivt',
-    'AuthorUrl' => 'http://bleistivt.net',
-    'License' => 'GNU GPL2'
-];
-
 class NecropostPlugin extends Gdn_Plugin {
 
     public function settingsController_necropost_create($sender) {
         $sender->permission('Garden.Settings.Manage');
-        $sender->addSideMenu('settings/necropost');
+        $sender->setHighlightRoute('settings/necropost');
 
         $conf = new ConfigurationModule($sender);
         $conf->initialize([
