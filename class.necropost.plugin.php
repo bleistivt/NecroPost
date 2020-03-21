@@ -28,7 +28,8 @@ class NecropostPlugin extends Gdn_Plugin {
 
 
     public function discussionController_render_before($sender) {
-        if (!$sender->data('Discussion') || time() - strtotime($sender->data('Discussion')->DateLastComment) < c('Necropost.Days', 365) * 86400) {
+        $dateLastComment = $sender->data('Discussion.DateLastComment');
+        if (!$dateLastComment || time() - strtotime($dateLastComment) < c('Necropost.Days', 365) * 86400) {
             return;
         }
         $sender->Head->addString(
