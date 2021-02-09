@@ -22,14 +22,14 @@ class NecropostPlugin extends Gdn_Plugin {
             ]
         ]);
         
-        $sender->title(t('Necropost Warning'));
+        $sender->title(Gdn::translate('Necropost Warning'));
         $conf->renderAll();
     }
 
 
     public function discussionController_render_before($sender) {
         $dateLastComment = $sender->data('Discussion.DateLastComment');
-        if (!$dateLastComment || time() - strtotime($dateLastComment) < c('Necropost.Days', 365) * 86400) {
+        if (!$dateLastComment || time() - strtotime($dateLastComment) < Gdn::config('Necropost.Days', 365) * 86400) {
             return;
         }
         $sender->Head->addString(
@@ -45,7 +45,10 @@ class NecropostPlugin extends Gdn_Plugin {
 
 
     private function message() {
-        return t(c('Necropost.Message', 'This discussion has been inactive for more than a year. Please comment only if you have something constructive to add.'));
+        return Gdn::translate(Gdn::config(
+            'Necropost.Message',
+            'This discussion has been inactive for more than a year. Please comment only if you have something constructive to add.
+        '));
     }
 
 }
