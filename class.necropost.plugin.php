@@ -34,10 +34,13 @@ class NecropostPlugin extends Gdn_Plugin {
         }
         $sender->Head->addString(
             '<script type="text/javascript">
-                jQuery(function($){
-                    $("#Form_Comment").one("focus", ".TextBox", function() {
-                        gdn.informMessage("'.$this->message().'", "Dismissable");
-                    });
+                document.addEventListener("DOMContentLoaded", function() {
+                    var textbox = document.querySelector("#Form_Comment .TextBox");
+                    if (textbox) {
+                        textbox.addEventListener("focus", function() {
+                            gdn.informMessage('.json_encode($this->message()).', "Dismissable");
+                        }, {once: true});
+                    }
                 });
             </script>'
         );
